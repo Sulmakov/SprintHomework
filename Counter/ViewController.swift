@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+private class ViewController: UIViewController {
     
     @IBOutlet weak var counterValue: UILabel!
     @IBOutlet weak var buttonPlus: UIButton!
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         historyOfChanges.text = "История изменений"
         
         counterValue.text = "Значение счетчика: 0"
@@ -34,8 +34,8 @@ class ViewController: UIViewController {
         buttonClear.backgroundColor = .systemYellow
         buttonClear.tintColor = .black
     }
-   var value = 0
-   var history: [String] = []
+    var value = 0
+    var history: [String] = []
     
     func addHistoryEntry(message: String) {
         let timestamp = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
@@ -44,12 +44,8 @@ class ViewController: UIViewController {
         updateHistoryDisplay()
     }
     
-    // Обновление текстового поля истории
     func updateHistoryDisplay() {
-        // Объединяем все записи с переносом строки
         historyOfChanges.text = history.joined(separator: "\n")
-        
-        // Прокрутка вниз, чтобы видеть последнюю запись
         if !history.isEmpty {
             let range = NSRange(location: historyOfChanges.text.count - 1, length: 1)
             historyOfChanges.scrollRangeToVisible(range)
